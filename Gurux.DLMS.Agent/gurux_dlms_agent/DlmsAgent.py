@@ -113,12 +113,11 @@ class DlmsAgent():
             if self.settings.media:
                 self.settings.media.close()
             self.reader = None
-        finally:
-            if self.reader:
-                try:
-                    self.reader.close()
-                except Exception:
-                    traceback.print_exc()
+        #finally:
+        #    try:
+        #        self.reader.close()
+        #    except Exception:
+        #        traceback.print_exc()
         
     def readObject(self, args) -> str:
         try:
@@ -132,7 +131,7 @@ class DlmsAgent():
             obj = self.settings.client.objects.findByLN(ObjectType.NONE, k)
             if obj is None:
                 raise Exception("Unknown logical name:" + k)
-            val = self.reader.read(obj, v)
+            val = self.reader.read(obj, int(v))
             return val
 
         except (ValueError, GXDLMSException, GXDLMSExceptionResponse, GXDLMSConfirmedServiceError) as ex:

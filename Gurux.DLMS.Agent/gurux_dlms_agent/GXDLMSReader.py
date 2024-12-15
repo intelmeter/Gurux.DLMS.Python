@@ -550,5 +550,5 @@ class GXDLMSReader:
             #Don't send anything if user is closing the app.
             self.media = None
             raise
-        finally:
-            self.close()
+        #finally:
+            #self.close()
